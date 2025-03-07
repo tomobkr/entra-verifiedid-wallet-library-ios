@@ -14,4 +14,7 @@ protocol OpenIdResponder {
     /// Sends the presentation response and if successful, returns void,
     /// If unsuccessful, throws an error.
     func send(response: RawPresentationResponse) async throws -> Void
+//SDKCHANGE: Needed to add the below interface, so that PresentationService.OpenIdForVC.swift and PresentationService can have their methods called
+  func retrieveTokens(response: RawPresentationResponse) async throws -> PresentationResponse
+//CHANGEEND
 }

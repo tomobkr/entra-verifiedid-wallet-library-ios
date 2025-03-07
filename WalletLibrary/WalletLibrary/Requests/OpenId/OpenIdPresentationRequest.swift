@@ -7,6 +7,22 @@ enum VerifiedIdPresentationRequestError: Error {
     case cancelPresentationRequestIsUnsupported
 }
 
+//SDKCHANGE: Added this type, to be able to use the fields in EntraWallet, and be able to encode to JSON
+public class PresenationTokenResponse: Codable {
+    public let idToken: String
+    
+    public let vpToken: String
+    
+    public let state: String?
+    
+    init(presentationResponse: PresentationResponse) throws {
+      idToken = try presentationResponse.idToken.serialize()
+      vpToken = (try presentationResponse.vpTokens.first?.serialize() ?? "Nothing")
+      state = presentationResponse.state ?? "Nothing"
+    }
+}
+//CHANGEEND
+
 /**
  * Presentation Requst that is Open Id specific.
  */
@@ -59,6 +75,19 @@ class OpenIdPresentationRequest: VerifiedIdPresentationRequest {
             try await self.responder.send(response: response)
         }
     }
+
+//SDKCHANGE: Added retrieveTokens to get the formatted presentation response, and return it in our type "PresenationTokenResponse".
+    func retrieveTokens() async -> VerifiedIdResult<PresentationTokenResponse> {
+        await VerifiedIdResult<PresentationTokenResponse>.getResult {
+            var response = try PresentationResponseContainer(rawRequest: self.rawRequest)
+            try response.add(requirement: self.requirement)
+            let presentationResponseResult = try await self.responder.retrieveTokens(response: response)
+          
+            let tokens = try PresentationTokenResponse(presentationResponse: presentationResponseResult)
+            return tokens;
+        }
+    }
+//CHANGEEND
     
     /// Cancel the request with an optional message.
     func cancel(message: String?) async -> VerifiedIdResult<Void> {

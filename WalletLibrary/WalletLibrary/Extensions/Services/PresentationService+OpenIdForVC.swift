@@ -8,8 +8,7 @@ enum PresentationServiceExtensionError: Error {
 }
 
 /**
- * An extension!!! of the VCServices.PresentationService class.
- * Also, this is the version made by Tom!
+ * An extension of the VCServices.PresentationService class.
  */
 extension PresentationService: OpenIdForVCResolver, OpenIdResponder {
     
@@ -28,4 +27,14 @@ extension PresentationService: OpenIdForVCResolver, OpenIdResponder {
         
         try await self.send(response: presentationResponseContainer)
     }
+//SDKCHANGE: copied the "send" method, as it doesn't return the type from self.send, now it returns the object containing the tokens
+    func retrieveTokens(response: RawPresentationResponse) async throws -> PresentationResponse {
+        
+        guard let presentationResponseContainer = response as? PresentationResponseContainer else {
+            throw PresentationServiceExtensionError.unableToCastOpenIdForVCResponseToPresentationResponseContainer
+        }
+        
+        return try await self.retrieveTokens(response: presentationResponseContainer)
+    }
+//CHANGEND
 }

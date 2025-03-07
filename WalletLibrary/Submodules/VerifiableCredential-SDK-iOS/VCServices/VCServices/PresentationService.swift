@@ -81,6 +81,15 @@ class PresentationService {
                                                              withBody: formattedResponse)
         }
     }
+
+//SDKCHANGE: Copied from "send". added this method to return the presentationResponse, which contains the tokens, as it wasn't before
+//Also removed the completion of the presentation as we don't wish to complete presentation here.
+    func retrieveTokens(response: PresentationResponseContainer) async throws -> PresentationResponse{
+        try await logTime(name: "Presentation sendResponse") {
+            return try self.formatPresentationResponse(response: response)
+        }
+    }
+//CHANGEEND
     
     private func getRequestUri(from urlStr: String) throws -> String {
         
