@@ -8,7 +8,8 @@ enum PresentationServiceExtensionError: Error {
 }
 
 /**
- * An extension of the VCServices.PresentationService class.
+ * An extension!!! of the VCServices.PresentationService class.
+ * Also, this is the version made by Tom!
  */
 extension PresentationService: OpenIdForVCResolver, OpenIdResponder {
     
