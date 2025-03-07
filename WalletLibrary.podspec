@@ -3,13 +3,13 @@ Pod::Spec.new do |s|
     s.version= '1.0.1'
     s.license= 'MIT'
     s.summary= 'An SDK to manage your Decentralized Identities and Verifiable Credentials.'
-    s.homepage= 'https://github.com/microsoft/entra-verifiedid-wallet-library-ios'
+    s.homepage= 'https://github.com/tomobkr/entra-verifiedid-wallet-library-ios'
     s.authors= {
-      'symorton' => 'symorton@microsoft.com'
+      'tomobkr' => 'tomobkr@aol.com'
     }
-    s.documentation_url= 'https://github.com/microsoft/entra-verifiedid-wallet-library-ios'
+    s.documentation_url= 'https://github.com/tomobkr/entra-verifiedid-wallet-library-ios'
     s.source= {
-      :git => 'https://github.com/microsoft/entra-verifiedid-wallet-library-ios.git',
+      :git => 'https://github.com/tomobkr/entra-verifiedid-wallet-library-ios.git',
       :submodules => true,
       :tag => s.version
     }
