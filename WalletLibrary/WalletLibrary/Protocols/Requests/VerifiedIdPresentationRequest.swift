@@ -7,7 +7,7 @@
  * A Verified Id Presentation Request contains the look and feel of the verifier,
  * the requirement needed to fulfill the request, and the root of trust.
  */
-//SDKCHANGE: Added return type of PresenationTokenResponse, and added interface method retrieveTokens.
+//SDKCHANGE: Added return type of PresentationTokenResponse, and added interface method retrieveTokens.
 public protocol VerifiedIdPresentationRequest: VerifiedIdRequest where T == Void {
   func retrieveTokens() async -> VerifiedIdResult<PresentationTokenResponse>
 }
