@@ -8,7 +8,7 @@ enum VerifiedIdPresentationRequestError: Error {
 }
 
 //SDKCHANGE: Added this type, to be able to use the fields in EntraWallet, and be able to encode to JSON
-public class PresenationTokenResponse: Codable {
+public class PresentationTokenResponse: Codable {
     public let idToken: String
     
     public let vpToken: String
@@ -76,7 +76,7 @@ class OpenIdPresentationRequest: VerifiedIdPresentationRequest {
         }
     }
 
-//SDKCHANGE: Added retrieveTokens to get the formatted presentation response, and return it in our type "PresenationTokenResponse".
+//SDKCHANGE: Added retrieveTokens to get the formatted presentation response, and return it in our type "PresentationTokenResponse".
     func retrieveTokens() async -> VerifiedIdResult<PresentationTokenResponse> {
         await VerifiedIdResult<PresentationTokenResponse>.getResult {
             var response = try PresentationResponseContainer(rawRequest: self.rawRequest)
