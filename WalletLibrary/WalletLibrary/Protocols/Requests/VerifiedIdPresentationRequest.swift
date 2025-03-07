@@ -9,6 +9,6 @@
  */
 //SDKCHANGE: Added return type of PresenationTokenResponse, and added interface method retrieveTokens.
 public protocol VerifiedIdPresentationRequest: VerifiedIdRequest where T == Void {
-  func retrieveTokens() async -> VerifiedIdResult<PresenationTokenResponse>
+  func retrieveTokens() async -> VerifiedIdResult<PresentationTokenResponse>
 }
 //CHANGEEND
